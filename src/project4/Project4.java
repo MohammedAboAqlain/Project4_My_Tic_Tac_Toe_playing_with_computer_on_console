@@ -1,16 +1,12 @@
 package project4;
 
-import java.util.Scanner;
-
 public class Project4 {
 
     public static void main(String[] args) {
 
         int[][] XOBoard = new int[3][3];
-        Scanner input = new Scanner(System.in);
-        int a = whichPlayer(), x, y;
+        int a = whichPlayer();
 
-        outer:
         for (int i = 0; i < 9; i++) {
             printBoard(XOBoard);
             if (a == 0) {
@@ -19,30 +15,30 @@ public class Project4 {
                     if (checkWinner(XOBoard)) {
                         printBoard(XOBoard);
                         System.out.println("congratulations! you won.");
-                        break outer;
+                        break;
                     }
                 } else {
                     computrePlay(XOBoard, a);
                     if (checkWinner(XOBoard)) {
                         printBoard(XOBoard);
                         System.out.println("Good luck! computer won!");
-                        break outer;
+                        break;
                     }
                 }
             } else {
                 if (i % 2 == 1) {
-                    playXO(XOBoard, 1);
+                    playXO(XOBoard, a);
                     if (checkWinner(XOBoard)) {
                         printBoard(XOBoard);
                         System.out.println("congratulations! you won.");
-                        break outer;
+                        break;
                     }
                 } else {
                     computrePlay(XOBoard, a);
                     if (checkWinner(XOBoard)) {
                         printBoard(XOBoard);
                         System.out.println("Good luck! computer won!");
-                        break outer;
+                        break;
                     }
                 }
             }
@@ -101,9 +97,8 @@ public class Project4 {
         int x, y;
         java.util.Scanner input = new java.util.Scanner(System.in);
         while (true) {
-            System.out.print("Enter the row position : ");
+            System.out.print("Enter the position as a (row-column) separated by a space : ");
             x = input.nextInt();
-            System.out.print("Enter the column position : ");
             y = input.nextInt();
             if (XOBoard[x][y] == 0) {
                 XOBoard[x][y] = (a == 0) ? 'X' : 'O';
@@ -116,54 +111,65 @@ public class Project4 {
 
     public static void computrePlay(int[][] XOBoard, int a) {
 
-        if ((XOBoard[0][0] != 0)) {
+        if ((XOBoard[0][0] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[0][0] == XOBoard[0][1]) && (XOBoard[0][2] == 0)) {
                 XOBoard[0][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][0] == XOBoard[1][0]) && (XOBoard[2][0] == 0)) {
+            }
+            if ((XOBoard[0][0] == XOBoard[1][0]) && (XOBoard[2][0] == 0)) {
                 XOBoard[2][0] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][0] == XOBoard[1][1]) && (XOBoard[2][2] == 0)) {
+            }
+            if ((XOBoard[0][0] == XOBoard[1][1]) && (XOBoard[2][2] == 0)) {
                 XOBoard[2][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][0] == XOBoard[0][2]) && (XOBoard[0][1] == 0)) {
+            }
+            if ((XOBoard[0][0] == XOBoard[0][2]) && (XOBoard[0][1] == 0)) {
                 XOBoard[0][1] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][0] == XOBoard[2][0]) && (XOBoard[1][0] == 0)) {
+            }
+            if ((XOBoard[0][0] == XOBoard[2][0]) && (XOBoard[1][0] == 0)) {
                 XOBoard[1][0] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][0] == XOBoard[2][2]) && (XOBoard[1][1] == 0)) {
+            }
+            if ((XOBoard[0][0] == XOBoard[2][2]) && (XOBoard[1][1] == 0)) {
                 XOBoard[1][1] = (a == 0) ? 'O' : 'X';
                 return;
             }
         }
-        if ((XOBoard[0][2] != 0)) {
+        if ((XOBoard[0][2] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[0][2] == XOBoard[0][1]) && (XOBoard[0][0] == 0)) {
                 XOBoard[0][0] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][2] == XOBoard[1][2]) && (XOBoard[2][2] == 0)) {
+            }
+            if ((XOBoard[0][2] == XOBoard[1][2]) && (XOBoard[2][2] == 0)) {
                 XOBoard[2][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][2] == XOBoard[1][1]) && (XOBoard[2][0] == 0)) {
+            }
+            if ((XOBoard[0][2] == XOBoard[1][1]) && (XOBoard[2][0] == 0)) {
                 XOBoard[2][0] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][2] == XOBoard[2][2]) && (XOBoard[1][2] == 0)) {
+            }
+            if ((XOBoard[0][2] == XOBoard[2][2]) && (XOBoard[1][2] == 0)) {
                 XOBoard[1][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][2] == XOBoard[2][0]) && (XOBoard[1][1] == 0)) {
+            }
+            if ((XOBoard[0][2] == XOBoard[2][0]) && (XOBoard[1][1] == 0)) {
                 XOBoard[1][1] = (a == 0) ? 'O' : 'X';
                 return;
             }
 
         }
-        if ((XOBoard[2][2] != 0)) {
+        if ((XOBoard[2][2] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[2][2] == XOBoard[1][2]) && (XOBoard[0][2] == 0)) {
                 XOBoard[0][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[2][2] == XOBoard[2][1]) && (XOBoard[2][0] == 0)) {
+            }
+            if ((XOBoard[2][2] == XOBoard[2][1]) && (XOBoard[2][0] == 0)) {
                 XOBoard[2][0] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[2][2] == XOBoard[1][1]) && (XOBoard[0][0] == 0)) {
+            }
+            if ((XOBoard[2][2] == XOBoard[1][1]) && (XOBoard[0][0] == 0)) {
                 XOBoard[0][0] = (a == 0) ? 'O' : 'X';
                 return;
             }
@@ -172,73 +178,195 @@ public class Project4 {
                 return;
             }
         }
-        if ((XOBoard[2][0] != 0)) {
+        if ((XOBoard[2][0] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[2][0] == XOBoard[2][1]) && (XOBoard[2][2] == 0)) {
                 XOBoard[2][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[2][0] == XOBoard[1][1]) && (XOBoard[0][2] == 0)) {
+            }
+            if ((XOBoard[2][0] == XOBoard[1][1]) && (XOBoard[0][2] == 0)) {
                 XOBoard[0][2] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[2][0] == XOBoard[1][0]) && (XOBoard[0][0] == 0)) {
+            }
+            if ((XOBoard[2][0] == XOBoard[1][0]) && (XOBoard[0][0] == 0)) {
                 XOBoard[0][0] = (a == 0) ? 'O' : 'X';
                 return;
             }
         }
-        if ((XOBoard[0][1] != 0)) {
+        if ((XOBoard[0][1] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[0][1] == XOBoard[1][1]) && (XOBoard[2][1] == 0)) {
                 XOBoard[2][1] = (a == 0) ? 'O' : 'X';
                 return;
-            } else if ((XOBoard[0][1] == XOBoard[2][1]) && (XOBoard[1][1] == 0)) {
-                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
-                return;
             }
-        } else if ((XOBoard[1][0] != 0)) {
-            if ((XOBoard[1][0] == XOBoard[1][1]) && (XOBoard[1][2] == 0)) {
-                XOBoard[1][2] = (a == 0) ? 'O' : 'X';
-                return;
-            } else if ((XOBoard[1][0] == XOBoard[1][2]) && (XOBoard[1][1] == 0)) {
+            if ((XOBoard[0][1] == XOBoard[2][1]) && (XOBoard[1][1] == 0)) {
                 XOBoard[1][1] = (a == 0) ? 'O' : 'X';
                 return;
             }
         }
-        if ((XOBoard[1][2] != 0)) {
+        if ((XOBoard[1][0] == ((a == 0) ? 'O' : 'X'))) {
+            if ((XOBoard[1][0] == XOBoard[1][1]) && (XOBoard[1][2] == 0)) {
+                XOBoard[1][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[1][0] == XOBoard[1][2]) && (XOBoard[1][1] == 0)) {
+                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[1][2] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[1][2] == XOBoard[1][1]) && (XOBoard[1][0] == 0)) {
                 XOBoard[1][0] = (a == 0) ? 'O' : 'X';
                 return;
             }
         }
-        if ((XOBoard[2][1] != 0)) {
+        if ((XOBoard[2][1] == ((a == 0) ? 'O' : 'X'))) {
             if ((XOBoard[2][1] == XOBoard[1][1]) && (XOBoard[0][1] == 0)) {
                 XOBoard[0][1] = (a == 0) ? 'O' : 'X';
                 return;
             }
+        }
+        if ((XOBoard[0][0] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[0][0] == XOBoard[0][1]) && (XOBoard[0][2] == 0)) {
+                XOBoard[0][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][0] == XOBoard[1][0]) && (XOBoard[2][0] == 0)) {
+                XOBoard[2][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][0] == XOBoard[1][1]) && (XOBoard[2][2] == 0)) {
+                XOBoard[2][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][0] == XOBoard[0][2]) && (XOBoard[0][1] == 0)) {
+                XOBoard[0][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][0] == XOBoard[2][0]) && (XOBoard[1][0] == 0)) {
+                XOBoard[1][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][0] == XOBoard[2][2]) && (XOBoard[1][1] == 0)) {
+                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[0][2] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[0][2] == XOBoard[0][1]) && (XOBoard[0][0] == 0)) {
+                XOBoard[0][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][2] == XOBoard[1][2]) && (XOBoard[2][2] == 0)) {
+                XOBoard[2][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][2] == XOBoard[1][1]) && (XOBoard[2][0] == 0)) {
+                XOBoard[2][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][2] == XOBoard[2][2]) && (XOBoard[1][2] == 0)) {
+                XOBoard[1][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][2] == XOBoard[2][0]) && (XOBoard[1][1] == 0)) {
+                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+
+        }
+        if ((XOBoard[2][2] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[2][2] == XOBoard[1][2]) && (XOBoard[0][2] == 0)) {
+                XOBoard[0][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[2][2] == XOBoard[2][1]) && (XOBoard[2][0] == 0)) {
+                XOBoard[2][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[2][2] == XOBoard[1][1]) && (XOBoard[0][0] == 0)) {
+                XOBoard[0][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[2][2] == XOBoard[2][0]) && (XOBoard[2][1] == 0)) {
+                XOBoard[2][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[2][0] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[2][0] == XOBoard[2][1]) && (XOBoard[2][2] == 0)) {
+                XOBoard[2][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[2][0] == XOBoard[1][1]) && (XOBoard[0][2] == 0)) {
+                XOBoard[0][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[2][0] == XOBoard[1][0]) && (XOBoard[0][0] == 0)) {
+                XOBoard[0][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[0][1] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[0][1] == XOBoard[1][1]) && (XOBoard[2][1] == 0)) {
+                XOBoard[2][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[0][1] == XOBoard[2][1]) && (XOBoard[1][1] == 0)) {
+                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[1][0] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[1][0] == XOBoard[1][1]) && (XOBoard[1][2] == 0)) {
+                XOBoard[1][2] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+            if ((XOBoard[1][0] == XOBoard[1][2]) && (XOBoard[1][1] == 0)) {
+                XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[1][2] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[1][2] == XOBoard[1][1]) && (XOBoard[1][0] == 0)) {
+                XOBoard[1][0] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if ((XOBoard[2][1] == ((a == 0) ? 'X' : 'O'))) {
+            if ((XOBoard[2][1] == XOBoard[1][1]) && (XOBoard[0][1] == 0)) {
+                XOBoard[0][1] = (a == 0) ? 'O' : 'X';
+                return;
+            }
+        }
+        if (XOBoard[1][1] == 0) {
+            XOBoard[1][1] = (a == 0) ? 'O' : 'X';
+            return;
         } else {
             for (int i = 0; i < XOBoard.length - 1; i++) {
                 for (int j = 0; j < XOBoard.length - 1; j++) {
-                    if ((XOBoard[i][j] != 0) && (XOBoard[i + 1][j] == 0)) {
-                        XOBoard[i + 1][j] = (a == 0) ? 'O' : 'X';
+                    if ((XOBoard[i][j] != 0) && (XOBoard[i + 1][j + 1] == 0)) {
+                        XOBoard[i + 1][j + 1] = (a == 0) ? 'O' : 'X';
                         return;
                     } else if ((XOBoard[i][j] != 0) && (XOBoard[i][j + 1] == 0)) {
                         XOBoard[i][j + 1] = (a == 0) ? 'O' : 'X';
                         return;
-                    } else if ((XOBoard[i][j] != 0) && (XOBoard[i + 1][j + 1] == 0)) {
-                        XOBoard[i + 1][j + 1] = (a == 0) ? 'O' : 'X';
+                    } else if ((XOBoard[i][j] != 0) && (XOBoard[i + 1][j] == 0)) {
+                        XOBoard[i + 1][j] = (a == 0) ? 'O' : 'X';
                         return;
                     }
 
                 }
             }
-            outer :for (int i = 0; i < XOBoard.length; i++) {
-                for (int j = 0; j < XOBoard.length; j++) {
-                    if (XOBoard[i][j] == 0) {
-                        XOBoard[i][j] = (a == 0) ? 'O' : 'X';
-                        break outer;
-                    }
-                }
-
-            }
         }
+        outer:
+        for (int i = 0; i < XOBoard.length; i++) {
+            for (int j = 0; j < XOBoard.length; j++) {
+                if (XOBoard[i][j] == 0) {
+                    XOBoard[i][j] = (a == 0) ? 'O' : 'X';
+                    break outer;
+                }
+            }
 
+        }
     }
 
 }
