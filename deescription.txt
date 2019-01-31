@@ -1,0 +1,10 @@
+This project was made to make the computer play x-o game with you, 
+it consists of 6 methods (main, whichPlayer, printBoard, playXO(for the user), 
+computerPlay, checkWinner).
+My idea is to make the user select whether they want to play as X-player
+or O-player using the whichPlayer method that returns an integer, then I used 
+this integer on all the possibilities using a conditional operator instead of
+using another two methods to deal with whichPlayer method, then I used a 2d array
+called xOBoard for storing the results, after that check if the computer won or finished
+with no winner because I took all the possibilities for the computer to play so it is 
+impossible for the user to win.
